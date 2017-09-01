@@ -47,13 +47,16 @@ class Client
      * @param string $endpoint
      * @param string $zpl
      * @param string $accept
+     * @param array $headers
      * @return mixed
      */
-    public function post($endpoint, $zpl, $accept = 'application/png')
+    public function post($endpoint, $zpl, $accept = 'image/png', $headers = [])
     {
+        $headers['Accept'] = $accept;
+
         $response = $this->httpClient->request('POST', self::API_ENDPOINT.$endpoint, [
             'headers' => [
-                'Accept' => $accept,
+                $headers
             ],
             'body' => $zpl,
         ]);

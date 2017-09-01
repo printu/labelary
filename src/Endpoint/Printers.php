@@ -42,8 +42,13 @@ class Printers extends Base
             $this->mockException('ZPL label code is required!', 'POST');
         }
 
+        $headers = [];
+        if (isset($options['rotate'])) {
+            $headers['X-Rotation'] = (int)$options['rotate'];
+        }
+
         $path = 'printers/'.$options['dpmm'].'/labels/'.$options['width'].'x'.$options['height'].'/'.$options['index'].'/';
 
-        return $this->client->post($path, $options['zpl'], $options['response']);
+        return $this->client->post($path, $options['zpl'], $options['response'], $headers);
     }
 }
