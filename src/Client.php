@@ -46,18 +46,13 @@ class Client
      * Sends POST request to Customer.io API.
      * @param string $endpoint
      * @param string $zpl
-     * @param string $accept
      * @param array $headers
      * @return mixed
      */
-    public function post($endpoint, $zpl, $accept = 'image/png', $headers = [])
+    public function post($endpoint, $zpl, $headers = [])
     {
-        $headers['Accept'] = $accept;
-
         $response = $this->httpClient->request('POST', self::API_ENDPOINT.$endpoint, [
-            'headers' => [
-                $headers
-            ],
+            'headers' => $headers,
             'body' => $zpl,
         ]);
 
