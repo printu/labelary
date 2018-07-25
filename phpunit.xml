@@ -4,9 +4,8 @@
          convertNoticesToExceptions="true"
          convertWarningsToExceptions="true"
          convertErrorsToExceptions="true"
-         syntaxCheck="true"
          verbose="true">
-    <testsuites>
+    <testsuites name="printu">
         <testsuite>
             <directory>tests</directory>
         </testsuite>
