@@ -12,6 +12,9 @@ use PHPUnit\Framework\TestCase;
 
 class ClientTest extends TestCase
 {
+    /**
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
     public function testBasicClient()
     {
         $mock = new MockHandler([
@@ -63,5 +66,4 @@ class ClientTest extends TestCase
             $this->assertTrue($accept == "image/png");
         }
     }
-
 }

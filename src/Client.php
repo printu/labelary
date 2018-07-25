@@ -48,6 +48,7 @@ class Client
      * @param string $zpl
      * @param array $headers
      * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function post($endpoint, $zpl, $headers = [])
     {
