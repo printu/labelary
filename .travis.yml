@@ -16,7 +16,7 @@ before_script:
   - if [ $TRAVIS_PHP_VERSION = '7.2' ]; then PHPUNIT_FLAGS="--coverage-clover ./build/logs/clover.xml"; fi
 
 script:
-  - phpunit $PHPUNIT_FLAGS
+  - ./vendor/bin/phpunit $PHPUNIT_FLAGS
 
 after_script:
   - if [ $TRAVIS_PHP_VERSION = '7.2' ]; then php vendor/bin/test-reporter; fi
