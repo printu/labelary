@@ -41,7 +41,7 @@ $zpl = '^xa^cfa,50^fo100,100^fdHello World^fs^xz';
 
 try {
     $response = $labelary->printers->labels([
-        'zpl' => base64_decode($zpl),
+        'zpl' => $zpl,
         'response' => 'application/pdf',
         'rotate' => 180
     ]);
