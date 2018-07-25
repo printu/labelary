@@ -19,4 +19,4 @@ script:
   - phpunit $PHPUNIT_FLAGS
 
 after_script:
-  - if [ $TRAVIS_PHP_VERSION = '7.2 ]; then php vendor/bin/test-reporter; fi
+  - if [ $TRAVIS_PHP_VERSION = '7.2' ]; then php vendor/bin/test-reporter; fi
