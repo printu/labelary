@@ -2,7 +2,7 @@
 
 PHP bindings for the Labelary.com API (http://labelary.com).
 
-[API Documentation](http://labelary.com/service.html)
+[API Documentation](http://labelary.com/service.html#parameters)
 
 [![Build Status](https://travis-ci.org/printu/labelary.svg?branch=master)](https://travis-ci.org/printu/labelary)
 [![Code Climate](https://codeclimate.com/github/printu/labelary/badges/gpa.svg)](https://codeclimate.com/github/printu/labelary)
@@ -35,6 +35,19 @@ Remember to include the Composer autoloader in your application:
 require_once 'vendor/autoload.php';
 
 // Application code...
+$labelary = new Labelary\Client();
+
+$zpl = '^xa^cfa,50^fo100,100^fdHello World^fs^xz';
+
+try {
+    $response = $labelary->printers->labels([
+        'zpl' => base64_decode($zpl),
+        'response' => 'application/pdf',
+        'rotate' => 180
+    ]);
+} catch (\GuzzleHttp\Exception\GuzzleException $e) {
+    throw new Exception("Błąd API Labelary: ".$e->getMessage());
+}
 ?>
 ```
 
