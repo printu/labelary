@@ -5,8 +5,8 @@
          convertWarningsToExceptions="true"
          convertErrorsToExceptions="true"
          verbose="true">
-    <testsuites name="printu">
-        <testsuite>
+    <testsuites>
+        <testsuite name="tests">
             <directory>tests</directory>
         </testsuite>
     </testsuites>
