@@ -30,8 +30,10 @@ class Printers extends Base
             $options['height'] = 6;
         }
 
-        if (!isset($options['index'])) {
-            $options['index'] = 0;
+        if (!isset($options['index']) || $options['response'] == 'application/pdf') {
+            $options['index'] = '';
+        } elseif (isset($options['index'])) {
+            $options['index'] = $options['index'] . "/";
         }
 
         if (!isset($options['response'])) {
@@ -46,10 +48,10 @@ class Printers extends Base
             'Accept' => $options['response'],
         ];
         if (isset($options['rotate'])) {
-            $headers['X-Rotation'] = (int)$options['rotate'];
+            $headers['X-Rotation'] = (int) $options['rotate'];
         }
 
-        $path = 'printers/'.$options['dpmm'].'/labels/'.$options['width'].'x'.$options['height'].'/'.$options['index'].'/';
+        $path = 'printers/' . $options['dpmm'] . '/labels/' . $options['width'] . 'x' . $options['height'] . '/' . $options['index'];
 
         return $this->client->post($path, $options['zpl'], $headers);
     }
