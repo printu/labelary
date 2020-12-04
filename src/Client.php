@@ -1,20 +1,23 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Labelary;
 
 use GuzzleHttp\Client as BaseClient;
-use GuzzleHttp\Psr7\Response;
-use function GuzzleHttp\Psr7\stream_for;
+use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\Psr7\Utils;
+use Psr\Http\Message\ResponseInterface;
 
 class Client
 {
-    const API_ENDPOINT = 'http://api.labelary.com/v1/';
+    const API_ENDPOINT = 'https://api.labelary.com/v1/';
 
     /** @var BaseClient $httpClient */
-    private $httpClient;
+    private BaseClient $httpClient;
 
     /** @var Endpoint\Printers $events */
-    public $printers;
+    public Endpoint\Printers $printers;
 
     /**
      * Client constructor.
@@ -28,7 +31,7 @@ class Client
     /**
      * Set default client
      */
-    private function setDefaultClient()
+    private function setDefaultClient(): void
     {
         $this->httpClient = new BaseClient();
     }
@@ -37,7 +40,7 @@ class Client
      * Sets GuzzleHttp client.
      * @param BaseClient $client
      */
-    public function setClient($client)
+    public function setClient(BaseClient $client): void
     {
         $this->httpClient = $client;
     }
@@ -48,9 +51,9 @@ class Client
      * @param string $zpl
      * @param array $headers
      * @return mixed
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws GuzzleException
      */
-    public function post($endpoint, $zpl, $headers = [])
+    public function post(string $endpoint, string $zpl, array $headers = [])
     {
         $response = $this->httpClient->request('POST', self::API_ENDPOINT.$endpoint, [
             'headers' => $headers,
@@ -61,19 +64,18 @@ class Client
     }
 
     /**
-     * @param Response $response
+     * @param ResponseInterface $response
      * @return mixed
      */
-    private function handleResponse(Response $response)
+    private function handleResponse(ResponseInterface $response)
     {
-        $stream = stream_for($response->getBody());
-        $data = json_encode(
+        $stream = Utils::streamFor($response->getBody());
+
+        return json_encode(
             [
                 'type' => $response->getHeaders()['Content-Type'][0],
                 'label' => base64_encode($stream->getContents()),
             ]
         );
-
-        return $data;
     }
 }

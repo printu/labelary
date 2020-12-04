@@ -3,7 +3,8 @@
 .idea
 /vendor/
 composer.lock
+test.php
 *.phar
 /build/
-test.php
-/.phpunit.result.cache
+composer.phar
+.phpunit.result.cache

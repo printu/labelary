@@ -3,6 +3,7 @@
 namespace Labelary\Tests;
 
 use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\Psr7\Request;
 use Labelary\Client as LabelaryClient;
 use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
@@ -14,7 +15,7 @@ use PHPUnit\Framework\TestCase;
 class ClientTest extends TestCase
 {
     /**
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws GuzzleException
      */
     public function testBasicClient()
     {
@@ -34,7 +35,7 @@ class ClientTest extends TestCase
             'zpl' => '^xa^cfa,50^fo100,100^fdHello World^fs^xz',
         ]);
         foreach ($container as $transaction) {
-            /** @var \GuzzleHttp\Psr7\Request $request */
+            /** @var Request $request */
             $request = $transaction['request'];
             $accept = $request->getHeaders()['Accept'][0];
             $this->assertTrue($accept == "image/png");
@@ -59,7 +60,7 @@ class ClientTest extends TestCase
             'rotate' => 180,
         ]);
         foreach ($container as $transaction) {
-            /** @var \GuzzleHttp\Psr7\Request $request */
+            /** @var Request $request */
             $request = $transaction['request'];
             $accept = $request->getHeaders()['Accept'][0];
             $this->assertTrue($accept == "image/png");

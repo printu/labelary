@@ -2,6 +2,8 @@
 
 namespace Labelary\Endpoint;
 
+use GuzzleHttp\Exception\GuzzleException;
+
 class Printers extends Base
 {
     const ENUM_DPMM_6 = '6dpmm';
@@ -14,7 +16,7 @@ class Printers extends Base
      * @see http://labelary.com/service.html#parameters
      * @param array $options
      * @return mixed
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws GuzzleException
      */
     public function labels(array $options)
     {

@@ -2,14 +2,14 @@
 
 namespace Labelary\Endpoint;
 
-use Labelary\Client;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Request;
+use Labelary\Client;
 
 class Base
 {
     /** @var Client */
-    protected $client;
+    protected Client $client;
 
     /**
      * Base constructor.
@@ -24,7 +24,7 @@ class Base
      * @param $message
      * @param $method
      */
-    protected function mockException($message, $method)
+    protected function mockException($message, $method): void
     {
         throw new RequestException($message, (new Request($method, '/')));
     }
