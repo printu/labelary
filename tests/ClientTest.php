@@ -1,7 +1,8 @@
 <?php
 
-namespace Customerio\Tests;
+namespace Labelary\Tests;
 
+use GuzzleHttp\Exception\GuzzleException;
 use Labelary\Client as LabelaryClient;
 use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
@@ -40,11 +41,9 @@ class ClientTest extends TestCase
         }
     }
 
-    /**
-     * @expectedException \GuzzleHttp\Exception\GuzzleException
-     */
     public function testBasicClientMissingZpl()
     {
+        $this->expectException(GuzzleException::class);
         $mock = new MockHandler([
             new Response(200, ['Content-Type' => 'image/png'], "1234"),
         ]);

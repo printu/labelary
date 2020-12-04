@@ -17,7 +17,7 @@ In your composer.json file:
 ```json
 {
     "require": {
-        "printu/labelary": "~1.0"
+        "printu/labelary": "~2.0"
     }
 }
 ```
@@ -32,6 +32,8 @@ Remember to include the Composer autoloader in your application:
 
 ```php
 <?php
+use GuzzleHttp\Exception\GuzzleException;
+
 require_once 'vendor/autoload.php';
 
 // Application code...
@@ -45,7 +47,7 @@ try {
         'response' => 'application/pdf',
         'rotate' => 180
     ]);
-} catch (\GuzzleHttp\Exception\GuzzleException $e) {
+} catch (GuzzleException $e) {
     throw new Exception("Błąd API Labelary: ".$e->getMessage());
 }
 ?>
