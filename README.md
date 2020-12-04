@@ -48,9 +48,8 @@ try {
         'rotate' => 180
     ]);
 } catch (GuzzleException $e) {
-    throw new Exception("Błąd API Labelary: ".$e->getMessage());
+    throw new Exception("API Labelary error: ".$e->getMessage());
 }
-?>
 ```
 
 ## License
