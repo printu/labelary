@@ -52,7 +52,7 @@ class Printers extends Base
         }
 
         $path = 'printers/'.$options['dpmm'].'/labels/'.$options['width'].'x'.$options['height'].'/';
-        if (!empty($options['index']) && (int)$options['index'] >= 0) {
+        if (isset($options['index']) && (int)$options['index'] >= 0) {
             $path .= $options['index'].'/';
         }
 
