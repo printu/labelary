@@ -1,8 +1,8 @@
-FROM php:8.0-cli
+FROM php:8.2-cli
 
 RUN mkdir -p /var/www/site
 
-RUN pecl install xdebug-3.0.0 \
+RUN pecl install xdebug \
     && docker-php-ext-enable xdebug
 
 WORKDIR /var/www/site

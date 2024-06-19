@@ -1,13 +1,13 @@
 language: php
 php:
-  - '7.4'
-  - '8.0'
+  - '8.2'
+  - '8.3'
 
 install:
   - composer install --prefer-source
 
 before_script:
-  - if [ $TRAVIS_PHP_VERSION = '8.0' ]; then PHPUNIT_FLAGS="--coverage-clover ./build/logs/clover.xml"; fi
+  - if [ $TRAVIS_PHP_VERSION = '8.3' ]; then PHPUNIT_FLAGS="--coverage-clover ./build/logs/clover.xml"; fi
 
 script:
   - ./vendor/bin/phpunit $PHPUNIT_FLAGS
