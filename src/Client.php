@@ -11,7 +11,7 @@ use Psr\Http\Message\ResponseInterface;
 
 class Client
 {
-    const API_ENDPOINT = 'http://api.labelary.com/v1/';
+    const API_ENDPOINT = 'https://api.labelary.com/v1/';
 
     /** @var BaseClient $httpClient */
     private BaseClient $httpClient;
